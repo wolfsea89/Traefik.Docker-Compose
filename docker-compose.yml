@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.3
+    container_name: traefik
+    restart: unless-stopped
+    networks:
+      - traefik
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /Data/containers/traefik/data:/etc/traefik:ro
+      - /Data/containers/traefik/data/userlist:/userlist:ro
+      - /Data/containers/traefik/log/traefik.log:/opt/traefik.log:rw
+      - /Data/containers/traefik/log/access.log:/opt/access.log:rw
+      - /Data/containers/traefik/cert/rachuna.pl.crt:/etc/ssl/certs/rachuna.pl.crt:ro
+      - /Data/containers/traefik/cert/rachuna.pl.key:/etc/ssl/certs/rachuna.pl.key:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik-rachuna-pl.entrypoints=https"
+      - "traefik.http.routers.traefik-rachuna-pl.rule=Host(`traefik.rachuna.pl`)"
+      - "traefik.http.routers.traefik-rachuna-pl.tls=true"
+      - "traefik.http.routers.traefik-rachuna-pl.service=api@internal"
+      - "traefik.http.services.traefik.loadbalancer.server.port=80"
+
+networks:
+  traefik:
+    external:
+      name: traefik
