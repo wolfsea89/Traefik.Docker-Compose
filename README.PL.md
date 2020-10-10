@@ -1,24 +1,24 @@
 Traefik.Docker-Compose
 =========
 
-Password generation
+Generowanie hasła
 ```
 htpasswd -mb /Data/containers/traefik/data/userlist "administrator" "1234567890"
 ```
 
-Run docker-compose
+Uruchomienie docker-compose
 ```
 docker-compose up -d
 ```
 
-Language: [EN](README.md), [PL](README.PL.md)
+Język: [EN](README.md), [PL](README.PL.md)
 
-License
+Licencja
 -------
 
 BSD
 
-Author Information
+Autor
 ------------------
  **Maciej Rachuna**
 ##### System Administrator & DevOps Engineer
