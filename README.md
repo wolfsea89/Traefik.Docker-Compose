@@ -11,7 +11,7 @@ Run docker-compose
 docker-compose up -d
 ```
 
-Język: [EN](README.md), [PL](README.PL.md)
+Language: [EN](README.md), [PL](README.PL.md)
 
 License
 -------
